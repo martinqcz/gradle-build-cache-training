@@ -16,8 +16,8 @@ class TextProcess extends DefaultTask {
     @InputFile
     File sourceFile = project.file('input/source.txt')
 
-//    @OutputDirectory
-//    File outputDir = project.file("$project.buildDir/output")
+    @OutputDirectory
+    File outputDir = project.file("$project.buildDir/output")
 
     @TaskAction
     void writeFile() {
