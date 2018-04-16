@@ -10,7 +10,7 @@ buildScan {
 
 task processText(type: TextProcess)
 
-//@CacheableTask
+@CacheableTask
 class TextProcess extends DefaultTask {
 
     @InputFile
