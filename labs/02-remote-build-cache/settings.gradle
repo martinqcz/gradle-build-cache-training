@@ -1,0 +1,11 @@
+rootProject.name = '02-remote-build-cache'
+
+buildCache {
+    local {
+        enabled = false
+    }
+    remote(HttpBuildCache) {
+        push = true
+        url = 'https://enterprise-training.gradle.com/cache/'
+    }
+}

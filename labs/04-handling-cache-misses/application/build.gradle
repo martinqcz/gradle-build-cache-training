@@ -1,0 +1,31 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation project(':build-info')
+    testImplementation 'junit:junit:4.12'
+    testImplementation('com.github.stefanbirkner:system-rules:1.16.0') {
+        exclude group: 'junit'
+    }
+}
+
+mainClassName = 'com.example.application.Main'
+
+test {
+    def integrationTestSamples = file('src/integration-test-samples')
+    environment.INTEGRATION_TEST_SAMPLES = integrationTestSamples.absolutePath
+//    inputs.dir(integrationTestSamples)
+//        .withPropertyName('integrationTestSamples')
+//        .withPathSensitivity(PathSensitivity.RELATIVE)
+}
+
+//normalization {
+//    runtimeClasspath {
+//        ignore 'build-info.properties'
+//    }
+//}

@@ -1,0 +1,47 @@
+plugins {
+    id 'com.gradle.build-scan' version '1.12.1'
+    id 'base'
+}
+
+buildScan {
+    server = 'https://enterprise-training.gradle.com'
+    publishAlways()
+}
+
+task processText(type: TextProcess)
+
+//@CacheableTask
+class TextProcess extends DefaultTask {
+
+    @InputFile
+    File sourceFile = project.file('input/source.txt')
+
+//    @OutputDirectory
+//    File outputDir = project.file("$project.buildDir/output")
+
+    @TaskAction
+    void writeFile() {
+        // this just simulates a task that takes some time to execute
+        Thread.sleep(1000 + new Random().nextInt(1000))
+
+        outputDir.mkdirs()
+        new File(outputDir, 'processed.txt').text = 'Processed text:' + System.getProperty('line.separator') + sourceFile.text
+    }
+}
+
+// this just guarantees that everyone running the lab pushes their own changes into the remote cache,
+// rather than getting hits from someone else's run
+tasks.create('generateLocalUniqueValue') {
+    ext.outputFile = file("$projectDir/local.txt")
+    outputs.file(outputFile)
+    doLast {
+        byte[] buf = new byte[20]
+        new Random().nextBytes(buf)
+        outputFile.bytes = buf
+    }
+}
+
+processText {
+    inputs.files(tasks.generateLocalUniqueValue).withPropertyName('uniqueValue')
+}
+

@@ -1,0 +1,6 @@
+group 'com.qapil'
+version '1.0-SNAPSHOT'
+
+wrapper {
+	distributionType = Wrapper.DistributionType.ALL
+}

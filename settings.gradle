@@ -1,0 +1,6 @@
+rootProject.name = 'gradle-training'
+
+includeBuild "labs/01-local-build-cache"
+includeBuild "labs/02-remote-build-cache"
+includeBuild "labs/03-cacheable-task"
+includeBuild "labs/04-handling-cache-misses"

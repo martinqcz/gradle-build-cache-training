@@ -1,0 +1,19 @@
+task buildInfo {
+    ext.buildInfoFile = file("${buildDir}/generated-resources/build-info.properties")
+    outputs.file buildInfoFile
+    inputs.property('currentTime') {
+        timestamp
+    }
+    group 'build'
+    doLast {
+        buildInfoFile.parentFile.mkdirs()
+        buildInfoFile.text = """
+            timestamp=${timestamp}
+            version=${version}
+        """.stripIndent()
+    }
+}
+
+sourceSets.main.output.dir(builtBy: buildInfo) {
+    buildInfo.buildInfoFile.parentFile
+}

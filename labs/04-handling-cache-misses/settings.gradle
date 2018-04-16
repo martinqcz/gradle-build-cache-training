@@ -1,0 +1,12 @@
+include 'build-info', 'application'
+rootProject.name = '04-handling-cache-misses'
+
+buildCache {
+    local {
+        enabled = false
+    }
+    remote(HttpBuildCache) {
+        push = true
+        url = 'https://enterprise-training.gradle.com/cache/'
+    }
+}
