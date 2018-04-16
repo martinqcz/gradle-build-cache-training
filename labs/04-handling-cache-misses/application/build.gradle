@@ -19,9 +19,9 @@ mainClassName = 'com.example.application.Main'
 test {
     def integrationTestSamples = file('src/integration-test-samples')
     environment.INTEGRATION_TEST_SAMPLES = integrationTestSamples.absolutePath
-//    inputs.dir(integrationTestSamples)
-//        .withPropertyName('integrationTestSamples')
-//        .withPathSensitivity(PathSensitivity.RELATIVE)
+    inputs.dir(integrationTestSamples)
+        .withPropertyName('integrationTestSamples')
+        .withPathSensitivity(PathSensitivity.RELATIVE)
 }
 
 normalization {
