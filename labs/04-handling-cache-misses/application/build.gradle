@@ -24,8 +24,8 @@ test {
 //        .withPathSensitivity(PathSensitivity.RELATIVE)
 }
 
-//normalization {
-//    runtimeClasspath {
-//        ignore 'build-info.properties'
-//    }
-//}
+normalization {
+    runtimeClasspath {
+        ignore 'build-info.properties'
+    }
+}
